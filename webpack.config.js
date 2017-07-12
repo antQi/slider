@@ -1,5 +1,7 @@
 var path = require('path')
 var htmlWebpackPlugin = require('html-webpack-plugin')
+var OpenBrowserPlugin = require('open-browser-webpack-plugin')
+var port = require('./config').port
 
 module.exports = {
     entry: {
@@ -18,7 +20,8 @@ module.exports = {
                 removeComments: true,
                 collapseInlineTagWhitespace: true
             }
-        })
+        }),
+        new OpenBrowserPlugin({ url: 'http://localhost:' + port + '/dist/demo.html' })
     ],
     module: {
         loaders: [{

@@ -11,6 +11,7 @@
   "devDependencies": {
     "css-loader": "^0.28.4",
     "html-webpack-plugin": "^2.29.0",
+    "open-browser-webpack-plugin": "0.0.5",
     "style-loader": "^0.18.2",
     "webpack": "^3.1.0"
   }

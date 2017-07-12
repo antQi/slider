@@ -1,7 +1,7 @@
 var http = require('http')
 var fs = require('fs')
 var path = require('path')
-var port = 8999
+var port = require('./config').port
 var contentType = 'text/plain'
 
 http.createServer(function(req, res) {
