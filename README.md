@@ -1,6 +1,7 @@
 # 轮播图－Slider
 
-# Installation (`node V4.0+`)
+# Installation 
+`node V4.0+`
 ```
 npm install
 ```
