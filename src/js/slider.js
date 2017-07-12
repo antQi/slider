@@ -1,7 +1,8 @@
 var dom = require('./dom')
-var toggleClass = dom.toggleClass
+var addClass = dom.addClass
+var removeClass = dom.removeClass
 var getStyle = dom.getStyle
-var hasClass = dom.getStyle
+var hasClass = dom.hasClass
 
 /**
  * 
@@ -75,7 +76,6 @@ Slider.prototype.once = function() {
         } else {
             clearTimeout(self.animateTimer)
             self.animateTimer = null
-                // debugger;
 
             self.container.style.left = endX + 'px'
             if (self.currentIndex + 1 >= self.len) {
@@ -122,44 +122,10 @@ Slider.prototype.toggleDot = function() {
     for (var i = 0; i < this.len; i++) {
         var dot = self.dots[i];
         if (hasClass(dot, self.dotActiveSign)) {
-            toggleClass(dot, self.dotActiveSign)
+            removeClass(dot, self.dotActiveSign)
         }
     }
-    toggleClass(self.dots[self.currentIndex], self.dotActiveSign)
+    addClass(self.dots[self.currentIndex], self.dotActiveSign)
 }
-
-// function toggleClass(el, className) {
-//     if (hasClass(el, className)) {
-//         var reg = new RegExp(className, 'g')
-//         el.className = el.className.replace(reg, '')
-//     } else {
-//         var classes = el.className.split(' ')
-//         classes.push(className)
-//         el.className = classes.join(' ')
-//     }
-// }
-
-// function hasClass(el, className) {
-//     return el.className.indexOf(className) !== -1
-// }
-
-// function getStyle(el, styleName) {
-//     var styleObj, style
-
-//     if (el.currentStyle) {
-//         styleObj = el.currentStyle
-//         if (styleName.indexOf('-') > 0) {
-//             var temp = styleName.split('-')
-//             temp[1].charAt(0).toUpeercase() + substring(1)
-//             styleName = temp.join('')
-//         }
-//         style = styleObj.getAttribute(styleName)
-//     } else {
-//         styleObj = window.getComputedStyle(el, null)
-//         style = styleObj.getPropertyValue(styleName)
-//     }
-
-//     return style
-// }
 
 module.exports = Slider

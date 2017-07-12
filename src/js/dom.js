@@ -1,16 +1,18 @@
-function toggleClass(el, className) {
-    if (hasClass(el, className)) {
-        var reg = new RegExp(className, 'g')
-        el.className = el.className.replace(reg, '')
-    } else {
-        var classes = el.className.split(' ')
-        classes.push(className)
-        el.className = classes.join(' ')
-    }
+function addClass(el, className) {
+    if (hasClass(el, className)) { return }
+    var classes = el.className.split(' ')
+    classes.push(className)
+    el.className = classes.join(' ')
+}
+
+function removeClass(el, className) {
+    var reg = new RegExp(className, 'g')
+    el.className = el.className.replace(reg, '')
 }
 
 function hasClass(el, className) {
-    return el.className.indexOf(className) === -1
+    var ret = el.className.indexOf(className) !== -1
+    return ret
 }
 
 function getStyle(el, styleName) {
@@ -33,7 +35,8 @@ function getStyle(el, styleName) {
 }
 
 module.exports = {
-    toggleClass: toggleClass,
+    addClass: addClass,
+    removeClass: removeClass,
     hasClass: hasClass,
     getStyle: getStyle
 }
