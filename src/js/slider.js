@@ -1,7 +1,7 @@
-// var dom = require('./dom')
-// var toggleClass = dom.toggleClass
-// var getStyle = dom.getStyle
-// var hasClass = dom.getStyle
+var dom = require('./dom')
+var toggleClass = dom.toggleClass
+var getStyle = dom.getStyle
+var hasClass = dom.getStyle
 
 /**
  * 
@@ -44,8 +44,7 @@ Slider.prototype.loopPlay = function() {
     var self = this
     if (self.loop) {
         self.timer = setTimeout(function() {
-            console.log(1)
-                // self.once()
+            self.once()
         }, self.interval);
     }
 }
@@ -129,38 +128,38 @@ Slider.prototype.toggleDot = function() {
     toggleClass(self.dots[self.currentIndex], self.dotActiveSign)
 }
 
-function toggleClass(el, className) {
-    if (hasClass(el, className)) {
-        var reg = new RegExp(className, 'g')
-        el.className = el.className.replace(reg, '')
-    } else {
-        var classes = el.className.split(' ')
-        classes.push(className)
-        el.className = classes.join(' ')
-    }
-}
+// function toggleClass(el, className) {
+//     if (hasClass(el, className)) {
+//         var reg = new RegExp(className, 'g')
+//         el.className = el.className.replace(reg, '')
+//     } else {
+//         var classes = el.className.split(' ')
+//         classes.push(className)
+//         el.className = classes.join(' ')
+//     }
+// }
 
-function hasClass(el, className) {
-    return el.className.indexOf(className) !== -1
-}
+// function hasClass(el, className) {
+//     return el.className.indexOf(className) !== -1
+// }
 
-function getStyle(el, styleName) {
-    var styleObj, style
+// function getStyle(el, styleName) {
+//     var styleObj, style
 
-    if (el.currentStyle) {
-        styleObj = el.currentStyle
-        if (styleName.indexOf('-') > 0) {
-            var temp = styleName.split('-')
-            temp[1].charAt(0).toUpeercase() + substring(1)
-            styleName = temp.join('')
-        }
-        style = styleObj.getAttribute(styleName)
-    } else {
-        styleObj = window.getComputedStyle(el, null)
-        style = styleObj.getPropertyValue(styleName)
-    }
+//     if (el.currentStyle) {
+//         styleObj = el.currentStyle
+//         if (styleName.indexOf('-') > 0) {
+//             var temp = styleName.split('-')
+//             temp[1].charAt(0).toUpeercase() + substring(1)
+//             styleName = temp.join('')
+//         }
+//         style = styleObj.getAttribute(styleName)
+//     } else {
+//         styleObj = window.getComputedStyle(el, null)
+//         style = styleObj.getPropertyValue(styleName)
+//     }
 
-    return style
-}
+//     return style
+// }
 
-// module.exports = Slider
+module.exports = Slider

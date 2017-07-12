@@ -26,7 +26,7 @@ http.createServer(function(req, res) {
 
 }).listen(port)
 
-console.log('\x1b[33m%s\x1b[0m', 'DEMO RUN AT : http://localhost:' + port + '/src/demo/index.html')
+console.log('\x1b[33m%s\x1b[0m', 'demo run at : http://localhost:' + port + '/dist/demo.html')
 
 function getContentType(extname) {
     if (!extname) { return }

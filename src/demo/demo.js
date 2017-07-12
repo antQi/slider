@@ -1,4 +1,4 @@
-// var Slider = require('../js/slider')
+var Slider = require('../js/slider')
 
 var slider = new Slider({
     list: 'list',
