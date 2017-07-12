@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slider</title>
+    <style>
+        .container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: 0 auto;
+            width: 500px;
+            height: 300px;
+            overflow: hidden
+        }
+        
+        .container .list {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .list>div {
+            width: 500px;
+            height: 300px;
+            float: left;
+            text-align: center;
+            line-height: 300px
+        }
+        
+        .list .index_1 {
+            background-color: #f60
+        }
+        
+        .list .index_2 {
+            background-color: #ef4
+        }
+        
+        .list .index_3 {
+            background-color: #27e
+        }
+        
+        .list .index_4 {
+            background-color: #66f32e
+        }
+        
+        .list .index_5 {
+            background-color: #87e
+        }
+        
+        .dots {
+            position: absolute;
+            height: 10px;
+            width: 100px;
+            bottom: 20px;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%)
+        }
+        
+        .dots .dot {
+            display: inline-block;
+            float: left;
+            height: 10px;
+            width: 10px;
+            margin-right: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.5)
+        }
+        
+        .dot:first-child {
+            margin-left: 5px
+        }
+        
+        .dot:last-child {
+            margin-right: 5px
+        }
+        
+        .active {
+            background-color: rgba(255, 255, 255, 0.9) !important
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="list">
+            <div class="index_1" index="1">1</div>
+            <div class="index_2" index="2">2</div>
+            <div class="index_3" index="3">3</div>
+            <div class="index_4" index="4">4</div>
+            <div class="index_5" index="5">5</div>
+        </div>
+        <div class="dots">
+            <span class="dot active" index="1"></span>
+            <span class="dot" index="2"></span>
+            <span class="dot" index="3"></span>
+            <span class="dot" index="4"></span>
+            <span class="dot" index="5"></span>
+        </div>
+    </div>
+    <script src="../js/slider.js"></script>
+    <script src="./demo.js"></script>
+</body>
+
+</html>

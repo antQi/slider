@@ -1,0 +1,17 @@
+{
+  "name": "slider",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --config webpack.config.js --display-modules --colors --display-reasons --watch & node server.js"
+  },
+  "author": "hi.antqi@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.4",
+    "html-webpack-plugin": "^2.29.0",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.1.0"
+  }
+}
