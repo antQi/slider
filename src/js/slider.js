@@ -24,7 +24,7 @@ function Slider(params) {
 
     this.timer
     this.animateTimer
-    this.interval = 3000
+    this.interval = 1000
     this.time = 400
     this.speed = 0
     this.animateInterval = 30
@@ -32,6 +32,8 @@ function Slider(params) {
     this.dotActiveSign = 'active'
 
     this.loop = true
+    this.offset = 0
+    this.dotClick = false
 }
 
 Slider.prototype.init = function() {
@@ -39,12 +41,14 @@ Slider.prototype.init = function() {
     this.speed = this.width / (this.time / this.animateInterval)
 
     this.loopPlay()
+    this.dotPlay()
 }
 
 Slider.prototype.loopPlay = function() {
     var self = this
     if (self.loop) {
         self.timer = setTimeout(function() {
+            self.offset = parseInt(getStyle(self.container, 'left').replace('px', '')) + -1 * self.width
             self.once()
         }, self.interval);
     }
@@ -59,10 +63,13 @@ Slider.prototype.setStyle = function() {
     this.container.appendChild(copyLast)
 }
 
+
+
 Slider.prototype.once = function() {
     var self = this
     if (!self.width || !self.speed) { return }
-    var endX = parseInt(getStyle(self.container, 'left').replace('px', '')) + -1 * self.width
+
+    var endX = self.offset
 
     function move() {
         var currentLeft = parseInt(getStyle(self.container, 'left').replace('px', ''))
@@ -76,14 +83,16 @@ Slider.prototype.once = function() {
         } else {
             clearTimeout(self.animateTimer)
             self.animateTimer = null
-
             self.container.style.left = endX + 'px'
-            if (self.currentIndex + 1 >= self.len) {
+            if (self.currentIndex + 1 >= self.len && !self.dotClick) {
                 self.currentIndex = 0
                 self.container.style.left = 0
             } else {
-                self.currentIndex = self.currentIndex + 1
+                self.currentIndex = self.dotClick ? self.currentIndex : self.currentIndex + 1
+                self.dotClick = false
             }
+            self.offset = parseInt(getStyle(self.container, 'left').replace('px', '')) + -1 * self.width
+
             self.toggleDot()
             if (self.loop) {
                 self.loopPlay()
@@ -93,25 +102,30 @@ Slider.prototype.once = function() {
     move()
 }
 
-Slider.prototype.play = function(params) {
+Slider.prototype.clearInterval = function() {
+    clearInterval(this.timer)
+    this.timer = null
+}
+
+Slider.prototype.dotPlay = function(params) {
     var self = this
 
     for (var i = 0; i < this.len; i++) {
         self.dots[i].addEventListener('click', function() {
-            var target = this
 
+            self.dotClick = true
+            var target = this
             if (self.animateTimer) {
                 return
             }
-            if (!hasClass(target, self.dotActiveSign)) {
+            if (hasClass(target, this.dotActiveSign)) {
                 return
             }
-
+            self.clearInterval()
             var targetIndex = parseInt(target.getAttribute('index'))
-            var offset = self.width * (targetIndex - self.currentIndex)
-
+            self.offset = -1 * self.width * (targetIndex - self.currentIndex - 1) + parseInt(getStyle(self.container, 'left').replace('px', ''))
             self.once()
-            self.currentIndex = targetIndex
+            self.currentIndex = targetIndex !== 0 ? targetIndex - 1 : targetIndex
         })
 
     }
